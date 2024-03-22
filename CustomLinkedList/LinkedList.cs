@@ -53,4 +53,15 @@ public class LinkedList()
         // point the next of the last element to the new node
         temp.Next = newNode;
     }
+
+    public void RemoveFirst()
+    {
+        if (Head is null)
+        {
+            Console.WriteLine("List is empty");
+            return;
+        }
+
+        Head = Head.Next;
+    }
 }

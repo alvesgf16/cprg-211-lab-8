@@ -83,4 +83,49 @@ public class Tests
         Assert.That(list.Head.Next.Next!.Data, Is.EqualTo("John Smith"));
         Assert.IsNull(list.Head.Next.Next.Next);
     }
+
+    [Test]
+    public void RemoveFirst_EmptyList_WritesToConsole()
+    {
+        // Arrange
+        LinkedList list = new();
+        StringWriter sw = new();
+        Console.SetOut(sw);
+
+        // Act
+        list.RemoveFirst();
+
+        // Assert
+        Assert.That(sw.ToString(), Is.EqualTo("List is empty\r\n"));
+    }
+
+    [Test]
+    public void RemoveFirst_SingleNodeList_RemovesNode()
+    {
+        // Arrange
+        LinkedList list = new();
+        list.AddFirst("Joe Blow");
+
+        // Act
+        list.RemoveFirst();
+
+        // Assert
+        Assert.That(list.Count, Is.EqualTo(0));
+    }
+
+    [Test]
+    public void RemoveFirst_MultipleNodesList_RemovesFirstNode()
+    {
+        // Arrange
+        LinkedList list = new();
+        list.AddLast("Joe Blow");
+        list.AddLast("Joe Schmoe");
+
+        // Act
+        list.RemoveFirst();
+
+        // Assert
+        Assert.That(list.Count, Is.EqualTo(1));
+        Assert.That(list.Head!.Data, Is.EqualTo("Joe Schmoe"));
+    }
 }
