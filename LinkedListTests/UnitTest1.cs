@@ -128,4 +128,49 @@ public class Tests
         Assert.That(list.Count, Is.EqualTo(1));
         Assert.That(list.Head!.Data, Is.EqualTo("Joe Schmoe"));
     }
+
+    [Test]
+    public void RemoveLast_EmptyList_WritesToConsole()
+    {
+        // Arrange
+        LinkedList list = new();
+        StringWriter sw = new();
+        Console.SetOut(sw);
+
+        // Act
+        list.RemoveLast();
+
+        // Assert
+        Assert.That(sw.ToString(), Is.EqualTo("List is empty\r\n"));
+    }
+
+    [Test]
+    public void RemoveLast_SingleNodeList_RemovesNode()
+    {
+        // Arrange
+        LinkedList list = new();
+        list.AddLast("Joe Blow");
+
+        // Act
+        list.RemoveLast();
+
+        // Assert
+        Assert.That(list.Count, Is.EqualTo(0));
+    }
+
+    [Test]
+    public void RemoveLast_MultipleNodesList_RemovesLastNode()
+    {
+        // Arrange
+        LinkedList list = new();
+        list.AddLast("Joe Blow");
+        list.AddLast("Joe Schmoe");
+
+        // Act
+        list.RemoveLast();
+
+        // Assert
+        Assert.That(list.Count, Is.EqualTo(1));
+        Assert.That(list.Head!.Data, Is.EqualTo("Joe Blow"));
+    }
 }

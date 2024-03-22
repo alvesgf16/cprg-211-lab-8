@@ -64,4 +64,33 @@ public class LinkedList()
 
         Head = Head.Next;
     }
+
+    public void RemoveLast()
+    {
+        Node? temp = Head;
+        Node? prev = null;
+
+        if (temp is null)
+        {
+            Console.WriteLine("List is empty");
+            return;
+        }
+
+        // traverse to the last node while storing the node before
+        while (temp.Next is not null)
+        {
+            prev = temp;
+            temp = temp.Next;
+        }
+
+        // this handles a single node list
+        if (prev is null)
+        {
+            Head = null;
+            return;
+        }
+
+        // point the Next of the second-to-last node to null
+        prev.Next = null;
+    }
 }
