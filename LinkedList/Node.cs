@@ -1,4 +1,4 @@
-namespace CustomLinkedList;
+namespace LinkedListNS;
 
 public class Node(string data)
 {

@@ -1,4 +1,4 @@
-namespace CustomLinkedList;
+namespace LinkedListNS;
 
 public class LinkedList()
 {
@@ -109,7 +109,7 @@ public class LinkedList()
         }
 
         int counter = 0;
-        
+
         // traverse to the given index
         while (counter < index)
         {

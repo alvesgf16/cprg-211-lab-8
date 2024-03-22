@@ -1,8 +1,8 @@
-using CustomLinkedList;
+using LinkedListNS;
 
-namespace LinkedListTests;
+namespace Lab8Tests;
 
-public class Tests
+public class LinkedListTests
 {
     [Test]
     public void AddFirst_EmptyList_AddsNodeToBeginning()
