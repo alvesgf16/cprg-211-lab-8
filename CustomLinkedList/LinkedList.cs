@@ -93,4 +93,30 @@ public class LinkedList()
         // point the Next of the second-to-last node to null
         prev.Next = null;
     }
+
+    public string GetValue(int index)
+    {
+        Node? temp = Head;
+
+        if (temp is null)
+        {
+            throw new IndexOutOfRangeException();
+        }
+
+        if (index >= Count)
+        {
+            throw new IndexOutOfRangeException();
+        }
+
+        int counter = 0;
+        
+        // traverse to the given index
+        while (counter < index)
+        {
+            counter += 1;
+            temp = temp!.Next;
+        }
+
+        return temp!.Data;
+    }
 }

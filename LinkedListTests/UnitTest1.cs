@@ -173,4 +173,55 @@ public class Tests
         Assert.That(list.Count, Is.EqualTo(1));
         Assert.That(list.Head!.Data, Is.EqualTo("Joe Blow"));
     }
+
+    [Test]
+    public void GetValue_EmptyList_ThrowsException()
+    {
+        // Arrange
+        LinkedList list = new();
+
+        // Act & Assert
+        Assert.Throws<IndexOutOfRangeException>(() => list.GetValue(0));
+    }
+
+    [Test]
+    public void GetValue_IndexOutOfRange_ThrowsException()
+    {
+        // Arrange
+        LinkedList list = new();
+        list.AddLast("Joe Blow");
+
+        // Act & Assert
+        Assert.Throws<IndexOutOfRangeException>(() => list.GetValue(1));
+    }
+
+    [Test]
+    public void GetValue_SingleNodeList_ReturnsCorrectValue()
+    {
+        // Arrange
+        LinkedList list = new();
+        list.AddLast("Joe Blow");
+
+        // Act
+        string value = list.GetValue(0);
+
+        // Assert
+        Assert.That(value, Is.EqualTo("Joe Blow"));
+    }
+
+    [Test]
+    public void GetValue_MultipleNodesList_ReturnsCorrectValue()
+    {
+        // Arrange
+        LinkedList list = new();
+        list.AddLast("Joe Blow");
+        list.AddLast("Joe Schmoe");
+        list.AddLast("John Smith");
+
+        // Act
+        string value = list.GetValue(1);
+
+        // Assert
+        Assert.That(value, Is.EqualTo("Joe Schmoe"));
+    }
 }
