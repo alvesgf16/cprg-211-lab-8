@@ -224,4 +224,47 @@ public class Tests
         // Assert
         Assert.That(value, Is.EqualTo("Joe Schmoe"));
     }
+
+    [Test]
+    public void Count_EmptyList_ReturnsZero()
+    {
+        // Arrange
+        LinkedList list = new();
+
+        // Act
+        int count = list.Count;
+
+        // Assert
+        Assert.That(count, Is.EqualTo(0));
+    }
+
+    [Test]
+    public void Count_SingleNodeList_ReturnsOne()
+    {
+        // Arrange
+        LinkedList list = new();
+        list.AddLast("Joe Blow");
+
+        // Act
+        int count = list.Count;
+
+        // Assert
+        Assert.That(count, Is.EqualTo(1));
+    }
+
+    [Test]
+    public void Count_MultipleNodesList_ReturnsCorrectCount()
+    {
+        // Arrange
+        LinkedList list = new();
+        list.AddLast("Joe Blow");
+        list.AddLast("Joe Schmoe");
+        list.AddLast("John Smith");
+
+        // Act
+        int count = list.Count;
+
+        // Assert
+        Assert.That(count, Is.EqualTo(3));
+    }
 }
