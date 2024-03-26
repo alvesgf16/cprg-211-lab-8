@@ -32,11 +32,9 @@ public class LinkedList()
 
     public void AddLast(string data)
     {
-        Node newNode = new(data);
-
         if (Head is null)
         {
-            Head = newNode;
+            AddFirst(data);
             return;
         }
 
@@ -49,7 +47,7 @@ public class LinkedList()
         }
 
         // point the next of the last element to the new node
-        temp.Next = newNode;
+        temp.Next = new Node(data);
     }
 
     public void RemoveFirst()
@@ -65,14 +63,15 @@ public class LinkedList()
 
     public void RemoveLast()
     {
-        Node? temp = Head;
-        Node? prev = null;
-
-        if (temp is null)
+        // if there is 0 or 1 element in the list, the behaviour is the same as if we were removing the first element
+        if (Count <= 1)
         {
-            Console.WriteLine("List is empty");
+            RemoveFirst();
             return;
         }
+
+        Node temp = Head!;
+        Node? prev = null;
 
         // traverse to the last node while storing the node before
         while (temp.Next is not null)
@@ -81,15 +80,8 @@ public class LinkedList()
             temp = temp.Next;
         }
 
-        // this handles a single node list
-        if (prev is null)
-        {
-            Head = null;
-            return;
-        }
-
         // point the Next of the second-to-last node to null
-        prev.Next = null;
+        prev!.Next = null;
     }
 
     public string GetValue(int index)
