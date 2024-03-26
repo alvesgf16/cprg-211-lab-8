@@ -8,14 +8,12 @@ public class LinkedList()
     {
         get
         {
-            Node? temp = Head;
             int counter = 0;
 
             // traverse through the linked list
-            while (temp is not null)
+            for (Node? temp = Head; temp is not null; temp = temp.Next)
             {
                 counter += 1;
-                temp = temp.Next;
             }
 
             return counter;
