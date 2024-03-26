@@ -88,12 +88,7 @@ public class LinkedList()
     {
         Node? temp = Head;
 
-        if (temp is null)
-        {
-            throw new IndexOutOfRangeException();
-        }
-
-        if (index >= Count)
+        if (temp is null || index >= Count)
         {
             throw new IndexOutOfRangeException();
         }
