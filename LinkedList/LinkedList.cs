@@ -38,7 +38,7 @@ public class LinkedList
     /// <param name="data">The data to be stored in the new node.</param>
     public void AddLast(string data)
     {
-        if (Head is null)
+        if (IsEmpty())
         {
             AddFirst(data);
             return;
@@ -57,14 +57,14 @@ public class LinkedList
     /// </summary>
     public void RemoveFirst()
     {
-        if (Head is null)
+        if (IsEmpty())
         {
             Console.WriteLine("List is empty");
             return;
         }
 
         // point the Head to the Next of the first node
-        Head = Head.Next;
+        Head = Head!.Next;
         Count -= 1;
     }
 
@@ -96,7 +96,7 @@ public class LinkedList
     /// <exception cref="IndexOutOfRangeException">Thrown when the specified index is out of range.</exception>
     public string GetValue(int index)
     {
-        if (Head is null || index >= Count)
+        if (IsOutOfRange(index))
         {
             throw new IndexOutOfRangeException();
         }
@@ -106,6 +106,18 @@ public class LinkedList
         return current.Data;
     }
 
+    /// <summary>
+    /// Checks whether the linked list is empty.
+    /// </summary>
+    /// <returns>True if the linked list is empty; otherwise, false.</returns>
+    private bool IsEmpty() => Count == 0;
+
+    /// <summary>
+    /// Checks whether the specified index is out of range in the linked list.
+    /// </summary>
+    /// <param name="index">The index to check.</param>
+    /// <returns>True if the index is out of range; otherwise, false.</returns>
+    private bool IsOutOfRange(int index) => index < 0 || index >= Count;
 
     /// <summary>
     /// Retrieves the node at the specified index in the linked list.
