@@ -71,9 +71,9 @@ public class LinkedListTests
         // Arrange
         LinkedList list = new LinkedList();
         list.AddLast("Joe Schmoe");
-        list.AddLast("Joe Blow");
 
         // Act
+        list.AddLast("Joe Blow");
         list.AddLast("John Smith");
 
         // Assert
