@@ -59,8 +59,7 @@ public class LinkedList
     {
         if (IsEmpty())
         {
-            Console.WriteLine("List is empty");
-            return;
+            throw new InvalidOperationException("List is empty");
         }
 
         // point the Head to the Next of the first node

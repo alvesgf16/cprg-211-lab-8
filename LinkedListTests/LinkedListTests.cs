@@ -85,18 +85,21 @@ public class LinkedListTests
     }
 
     [Test]
-    public void RemoveFirst_EmptyList_WritesToConsole()
+    public void RemoveFirst_EmptyList_ThrowsException()
     {
         // Arrange
         LinkedList list = new();
-        StringWriter sw = new();
-        Console.SetOut(sw);
 
         // Act
-        list.RemoveFirst();
-
-        // Assert
-        Assert.That(sw.ToString(), Is.EqualTo("List is empty\r\n"));
+        try
+        {
+            list.RemoveFirst();
+        }
+        catch (InvalidOperationException e)
+        {
+            // Assert
+            StringAssert.Contains("List is empty", e.Message);
+        }
     }
 
     [Test]
@@ -130,7 +133,7 @@ public class LinkedListTests
     }
 
     [Test]
-    public void RemoveLast_EmptyList_WritesToConsole()
+    public void RemoveLast_EmptyList_ThrowsException()
     {
         // Arrange
         LinkedList list = new();
@@ -138,10 +141,15 @@ public class LinkedListTests
         Console.SetOut(sw);
 
         // Act
-        list.RemoveLast();
-
-        // Assert
-        Assert.That(sw.ToString(), Is.EqualTo("List is empty\r\n"));
+        try
+        {
+            list.RemoveLast();
+        }
+        catch (InvalidOperationException e)
+        {
+            // Assert
+            StringAssert.Contains("List is empty", e.Message);
+        }
     }
 
     [Test]
