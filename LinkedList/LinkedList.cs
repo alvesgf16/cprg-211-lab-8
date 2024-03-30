@@ -38,16 +38,11 @@ public class LinkedList()
             return;
         }
 
-        Node temp = Head;
-
-        // traverse to the last node
-        while (temp.Next is not null)
-        {
-            temp = temp.Next;
-        }
+        int lastIndex = Count - 1;
+        Node lastNode = GetNodeAt(lastIndex);
 
         // point the next of the last element to the new node
-        temp.Next = new Node(data);
+        lastNode.Next = new Node(data);
     }
 
     public void RemoveFirst()
@@ -70,38 +65,34 @@ public class LinkedList()
             return;
         }
 
-        Node temp = Head!;
-        Node? prev = null;
-
-        // traverse to the last node while storing the node before
-        while (temp.Next is not null)
-        {
-            prev = temp;
-            temp = temp.Next;
-        }
+        int secondToLastIndex = Count - 2;
+        Node secondToLastNode = GetNodeAt(secondToLastIndex);
 
         // point the Next of the second-to-last node to null
-        prev!.Next = null;
+        secondToLastNode.Next = null;
     }
 
     public string GetValue(int index)
     {
-        Node? temp = Head;
-
-        if (temp is null || index >= Count)
+        if (Head is null || index >= Count)
         {
             throw new IndexOutOfRangeException();
         }
 
-        int counter = 0;
+        Node current = GetNodeAt(index);
 
-        // traverse to the given index
-        while (counter < index)
+        return current.Data;
+    }
+
+    private Node GetNodeAt(int index)
+    {
+        Node current = Head!;
+
+        for(; index > 0; index -= 1)
         {
-            counter += 1;
-            temp = temp!.Next;
+            current = current.Next!;
         }
 
-        return temp!.Data;
+        return current;
     }
 }
