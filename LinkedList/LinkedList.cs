@@ -4,21 +4,7 @@ public class LinkedList()
 {
     public Node? Head { get; private set; } = null;
 
-    public int Count
-    {
-        get
-        {
-            int counter = 0;
-
-            // traverse through the linked list
-            for (Node? temp = Head; temp is not null; temp = temp.Next)
-            {
-                counter += 1;
-            }
-
-            return counter;
-        }
-    }
+    public int Count { get; private set; } = 0;
 
     public void AddFirst(string data)
     {
@@ -28,6 +14,7 @@ public class LinkedList()
         };
 
         Head = newNode;
+        Count += 1;
     }
 
     public void AddLast(string data)
@@ -43,6 +30,7 @@ public class LinkedList()
 
         // point the next of the last element to the new node
         lastNode.Next = new Node(data);
+        Count += 1;
     }
 
     public void RemoveFirst()
@@ -54,6 +42,7 @@ public class LinkedList()
         }
 
         Head = Head.Next;
+        Count -= 1;
     }
 
     public void RemoveLast()
@@ -70,6 +59,7 @@ public class LinkedList()
 
         // point the Next of the second-to-last node to null
         secondToLastNode.Next = null;
+        Count -= 1;
     }
 
     public string GetValue(int index)
