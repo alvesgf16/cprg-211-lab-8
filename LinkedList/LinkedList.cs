@@ -1,22 +1,41 @@
 namespace LinkedListNS;
 
-public class LinkedList()
+/// <summary>
+/// Represents a singly linked list data structure.
+/// </summary>
+public class LinkedList
 {
+    /// <summary>
+    /// A reference to the first node in the linked list.
+    /// </summary>
     public Node? Head { get; private set; } = null;
 
+    /// <summary>
+    /// The number of nodes contained in the linked list.
+    /// </summary>
     public int Count { get; private set; } = 0;
 
+    /// <summary>
+    /// Adds a new node with the specified data to the beginning of the linked list.
+    /// </summary>
+    /// <param name="data">The data to be stored in the new node.</param>
     public void AddFirst(string data)
     {
         Node newNode = new(data)
         {
+            // point the Next of the new node to the current Head
             Next = Head
         };
 
+        // point the Head to the new node
         Head = newNode;
         Count += 1;
     }
 
+    /// <summary>
+    /// Adds a new node with the specified data to the end of the linked list.
+    /// </summary>
+    /// <param name="data">The data to be stored in the new node.</param>
     public void AddLast(string data)
     {
         if (Head is null)
@@ -28,11 +47,14 @@ public class LinkedList()
         int lastIndex = Count - 1;
         Node lastNode = GetNodeAt(lastIndex);
 
-        // point the next of the last element to the new node
+        // point the next of the current last element to the new node
         lastNode.Next = new Node(data);
         Count += 1;
     }
 
+    /// <summary>
+    /// Removes the first node from the linked list.
+    /// </summary>
     public void RemoveFirst()
     {
         if (Head is null)
@@ -41,10 +63,14 @@ public class LinkedList()
             return;
         }
 
+        // point the Head to the Next of the first node
         Head = Head.Next;
         Count -= 1;
     }
 
+    /// <summary>
+    /// Removes the last node from the linked list.
+    /// </summary>
     public void RemoveLast()
     {
         // if there is 0 or 1 element in the list, the behaviour is the same as if we were removing the first element
@@ -62,6 +88,12 @@ public class LinkedList()
         Count -= 1;
     }
 
+    /// <summary>
+    /// Gets the data stored in the node at the specified index in the linked list.
+    /// </summary>
+    /// <param name="index">The zero-based index of the node whose data to retrieve.</param>
+    /// <returns>The data stored in the node at the specified index.</returns>
+    /// <exception cref="IndexOutOfRangeException">Thrown when the specified index is out of range.</exception>
     public string GetValue(int index)
     {
         if (Head is null || index >= Count)
@@ -74,11 +106,17 @@ public class LinkedList()
         return current.Data;
     }
 
+
+    /// <summary>
+    /// Retrieves the node at the specified index in the linked list.
+    /// </summary>
+    /// <param name="index">The zero-based index of the node to retrieve.</param>
+    /// <returns>The node at the specified index.</returns>
     private Node GetNodeAt(int index)
     {
         Node current = Head!;
 
-        for(; index > 0; index -= 1)
+        for (; index > 0; index -= 1)
         {
             current = current.Next!;
         }
