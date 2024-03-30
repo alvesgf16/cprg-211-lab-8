@@ -1,6 +1,6 @@
 using LinkedListNS;
 
-namespace Lab8Tests;
+namespace LinkedListTestsNS;
 
 public class LinkedListTests
 {
